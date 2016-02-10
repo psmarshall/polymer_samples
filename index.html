@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 1. Load webcomponents-lite.min.js for polyfill support. -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    </script>
+
+    <!-- 2. Use an HTML Import to bring in some elements. -->
+    <link rel="import" 
+        href="/bower_components/paper-header-panel/paper-header-panel.html">
+    <link rel="import" 
+          href="/bower_components/paper-toolbar/paper-toolbar.html">
+    <link rel="import" 
+          href="/bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import"
+          href="/bower_components/paper-tabs/paper-tabs.html">
+    <link rel="import" 
+          href="/bower_components/iron-icons/iron-icons.html">
+    <link rel="import" 
+          href="/bower_components/iron-pages/iron-pages.html">
+    <link rel="import" 
+          href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+    <style is="custom-style">
+      .self-end {
+        /* This mixin (from iron-flex-layout) aligns the tabs to the
+           bottom of the toolbar. */
+        @apply(--layout-self-end);
+      }
+      .month {
+        @apply(--paper-font-display1);
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body class="fullbleed vertical layout">
+    <template is="dom-bind">
+      <paper-header-panel class="flex">
+        <paper-toolbar class="tall">
+          <div class="top title"> Polymer is kewl</div>
+          <div class="middle month">December</div>
+          <paper-tabs class="bottom self-end" selected="{{selected}}">
+            <paper-tab>OVERVIEW</paper-tab>
+            <paper-tab>REPORT</paper-tab>
+          </paper-tabs>
+        </paper-toolbar>
+        <div>Content</div>
+      </paper-header-panel>
+      <iron-pages selected="{{selected}}">
+        <div>An Overview</div>
+        <div>An Report</div>
+      </iron-pages>
+    </template>
+    <script>
+      document.addEventListener('WebComponentsReady', function () {
+        var template = document.querySelector('template[is="dom-bind"]');
+        template.selected = 0; // selected is an index by default
+      });
+    </script>
+  </body>
+</html>
